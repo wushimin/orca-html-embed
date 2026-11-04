@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HTML 嵌入交互演示</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f7f9;color:#183344;font:16px/1.6 system-ui,sans-serif;padding:32px}main{max-width:800px;margin:auto}h1{font-size:28px;margin:0 0 8px}p{color:#527080}button{font:inherit;padding:8px 16px;margin:0 8px 12px 0;border:1px solid #a8bdc9;border-radius:8px;background:white;cursor:pointer}button[aria-pressed=true]{background:#11677c;color:white;border-color:#11677c}.row{background:white;border:1px solid #dbe5eb;padding:18px;margin:12px 0;border-radius:12px}.label{display:flex;justify-content:space-between}.track{height:18px;background:#e4edf2;margin-top:10px;border-radius:9px;overflow:hidden}.bar{height:100%;background:#147c91;border-radius:9px}#detail{padding:16px;border-left:4px solid #147c91;background:#e0f1f4}small{color:#526b78}
+</style>
+</head>
+<body><main>
+<h1>在笔记中运行交互 HTML</h1>
+<p>点击筛选按钮，再点击任意卡片查看详情。所有内容均在本文件内，无需联网。</p>
+<div role="group" aria-label="项目筛选">
+<button data-filter="all" aria-pressed="true">全部项目</button>
+<button data-filter="ready" aria-pressed="false">仅看已完成</button>
+</div>
+<div id="rows"></div>
+<p id="detail" role="status" aria-live="polite">请选择一张卡片。</p>
+<button id="reset">重置演示</button>
+<p><small>这是原创虚构演示数据，不代表任何真实业务结果。筛选与选中状态在重载后重置。</small></p>
+</main>
+<script>
+const items=[{name:'示例 A',progress:100,ready:true},{name:'示例 B',progress:65,ready:false},{name:'示例 C',progress:100,ready:true}];
+function render(filter='all'){
+ document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===filter)));
+ const rows=document.querySelector('#rows');rows.replaceChildren();
+ items.filter(i=>filter==='all'||i.ready).forEach(item=>{
+  const row=document.createElement('div');row.className='row';
+  const button=document.createElement('button');button.textContent=`${item.name} · ${item.progress}%`;
+  button.onclick=()=>document.querySelector('#detail').textContent=`${item.name}：${item.ready?'已完成':'进行中'}，进度 ${item.progress}%。`;
+  const track=document.createElement('div');track.className='track';track.setAttribute('role','progressbar');track.setAttribute('aria-label',item.name);track.setAttribute('aria-valuenow',item.progress);track.setAttribute('aria-valuemin','0');track.setAttribute('aria-valuemax','100');
+  const bar=document.createElement('div');bar.className='bar';bar.style.width=item.progress+'%';track.append(bar);row.append(button,track);rows.append(row);
+ });
+}
+document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>render(b.dataset.filter));
+document.querySelector('#reset').onclick=()=>{render();document.querySelector('#detail').textContent='请选择一张卡片。';};
+render();
+</script></body></html>

@@ -1,0 +1,17 @@
+{
+  "name": "orca-html-embed",
+  "version": "1.0.1",
+  "description": "在虎鲸笔记中嵌入离线 HTML、交互图表和内嵌图片",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/unit.test.mjs"
+  },
+  "engines": { "node": ">=20" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/wushimin/orca-html-embed.git" },
+  "homepage": "https://github.com/wushimin/orca-html-embed#readme",
+  "bugs": { "url": "https://github.com/wushimin/orca-html-embed/issues" },
+  "keywords": ["orca-note", "html", "embed", "offline"]
+}
