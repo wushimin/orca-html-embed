@@ -4,7 +4,19 @@
 
 **当前版本：1.0.1** · **已实测：Windows / Orca Note 1.99.0** · **许可证：MIT**
 
-[下载安装包](https://github.com/wushimin/orca-html-embed/releases/latest) · [交互演示源码](examples/interactive-demo.html) · [反馈问题](https://github.com/wushimin/orca-html-embed/issues)
+[下载安装包](https://github.com/wushimin/orca-html-embed/releases/latest) · [操作演示](#效果与操作演示) · [快速上手](#快速上手) · [交互演示源码](examples/interactive-demo.html) · [反馈问题](https://github.com/wushimin/orca-html-embed/issues)
+
+## 效果与操作演示
+
+在笔记中直接运行 HTML：输入 `/HTML` → 粘贴源码并保存 → 筛选项目 → 点击详情 → 展开查看 → 重载。
+
+![HTML 嵌入插件分步演示：插入、保存、筛选、详情、展开和重载](docs/media/walkthrough.gif)
+
+上图由 7 张真实操作截图组成，是 **25 秒循环播放的分步演示**。采集环境：Windows / Orca Note **1.101.0** / 插件 **1.0.1**，2026-11-26。示例使用仓库提供的原创虚构数据。
+
+需要停下来查看细节，可打开[笔记内效果](docs/media/embedded.png)、[编辑器](docs/media/editor.png)、[筛选与详情](docs/media/interaction.png)或[展开视图](docs/media/expanded.png)。
+
+HTML 内容、标题和插件选项会保存；筛选与选中状态属于网页临时状态，重载后恢复初始状态。
 
 ## 功能
 
@@ -42,12 +54,45 @@
 
 更新时，先停用插件并退出虎鲸笔记，再用新版发行文件覆盖插件目录，重新启动并启用。卸载时先停用，再移走该插件目录；插件不会主动删除已有 HTML 块或仓库资源，重新安装同名插件可恢复显示。
 
-## 使用
+## 快速上手
 
-1. 在普通笔记文字块中输入 `/`，选择 **HTML 嵌入**；也可点击编辑工具栏中的代码图标。
-2. 选择 HTML 文件，或在编辑器中粘贴源码。
-3. 设置标题、显示高度，以及是否启用交互脚本或联网。
-4. 点击 **保存 HTML 嵌入**，新块会插入到当前块之后。
+安装并启用后，先用 [interactive-demo.html](examples/interactive-demo.html) 试一次：
+
+1. 打开示例文件页面，点击 **Download raw file（下载原始文件）**，或打开 **Raw** 后复制全部源码。不要保存 GitHub 的文件展示网页。
+2. 在普通笔记文字块中输入 `/`，继续输入 `HTML`，选择 **HTML 嵌入**；也可点击编辑工具栏中的代码图标。
+3. 选择下载的 HTML 文件，或将完整源码粘贴到 **HTML 源码**。下图演示的是粘贴方式。
+4. 填写标题，保留 **启用交互脚本**，此离线示例无需勾选 **允许联网资源**。点击 **保存 HTML 嵌入**，新块会插入到当前块之后。
+5. 点击 **仅看已完成**，应只剩示例 A 和 C；点击卡片内的 **示例 C · 100%** 按钮，详情会显示“示例 C：已完成，进度 100%。”。
+6. 点击 **展开** 放大查看，再点击 **收起** 返回笔记。点击 **重载**，三个项目和初始提示会恢复。
+
+<details>
+<summary>第 2 步：从斜杠菜单插入</summary>
+
+![输入 /HTML 后选择 HTML 嵌入](docs/media/insert.png)
+
+</details>
+
+<details>
+<summary>第 3–4 步：粘贴源码并保存</summary>
+
+![HTML 编辑器：标题、源码、显示高度、脚本与联网选项，以及保存按钮](docs/media/editor.png)
+
+</details>
+
+**保存后，HTML 直接出现在笔记块中：**
+
+![虎鲸笔记内嵌入 HTML，显示三个项目和插件操作栏](docs/media/embedded.png)
+
+<details>
+<summary>第 5–6 步：筛选、查看详情与展开</summary>
+
+![仅看已完成后剩下示例 A 和 C，点击示例 C 后显示详情](docs/media/interaction.png)
+
+![展开后的 HTML 视图，保留筛选结果及详情，顶部可收起](docs/media/expanded.png)
+
+</details>
+
+## 常用操作
 
 块顶部的操作：
 
@@ -63,7 +108,7 @@
 
 ## 试用演示
 
-仓库提供原创、自包含的简单交互示例 [examples/interactive-demo.html](examples/interactive-demo.html)。保存该文件后，用插件导入即可试用；也可先用浏览器打开，比较嵌入后的效果。
+仓库提供原创、自包含的简单交互示例 [examples/interactive-demo.html](examples/interactive-demo.html)。按上面的“下载原始文件”方式保存后，用插件导入即可试用；也可先用浏览器打开，比较嵌入后的效果。
 
 该示例仅用于演示插件功能，不包含实际笔记或实机验收使用的用户资料。
 
@@ -94,7 +139,7 @@
 | 临时状态 | 悬停、筛选等网页状态不持久化，重载或重启后回到 HTML 初始状态 |
 | 笔记导出 | 普通 Markdown / 纯文本导出仅保留标题与资源引用，不会转换为原生笔记图表 |
 
-已验证的宿主为 Windows 上的 Orca Note 1.99.0。其他宿主版本、macOS 和移动端尚未完成验收。
+完整验收使用 Windows 上的 Orca Note 1.99.0；本页演示另在 1.101.0 中检查了源码保存、显示、筛选、详情、展开/收起和重载。1.101.0 尚未重复完整验收，macOS 和移动端也尚未完成验收。
 
 ## 常见问题
 
@@ -131,7 +176,7 @@
 
 当前单元测试共 8 项，覆盖路径解析、输入限制、并发资源读取、原文与派生预览大小限制隔离、源码与发行文件一致性等。
 
-1.0.1 修复了相对资源路径解析、宿主内联脚本限制及展开视图被编辑器布局压缩的问题，并补充预览缺失重建和派生文件大小余量。原始实机截图、笔记数据与机器专用诊断脚本留在本地，不随仓库或安装包发布。
+1.0.1 修复了相对资源路径解析、宿主内联脚本限制及展开视图被编辑器布局压缩的问题，并补充预览缺失重建和派生文件大小余量。历史验收原图、用户笔记数据与机器专用诊断脚本留在本地。本文公开的截图和动图仅展示仓库原创示例，详见[媒体说明](docs/media/README.md)。
 
 ## 开发
 
